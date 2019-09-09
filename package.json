@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Dane Horn",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.8.1"
+    "@hapi/joi": "^15.1.1",
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
+    "@types/hapi__joi": "^15.0.4",
+    "@types/joi": "^14.3.3",
     "nodemon": "^1.19.2"
   }
 }
