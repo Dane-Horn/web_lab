@@ -12,7 +12,7 @@ function access(grid) {
     }
 }
 
-function depth_first(src, dst, grid) {
+function depth_first(src, dst, grid) { // returns {visited, seen}
     let visited = [];
     let seen = [src];
     let [dx, dy] = dst;
@@ -38,13 +38,14 @@ function depth_first(src, dst, grid) {
         });
     }
 }
-let { visited, seen } = depth_first([0, 0], [2, 5],
-    [
-        [0, 1, 5],
-        [5, 5, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-    ]);
-console.log(visited);
+module.exports = depth_first;
+// let { visited, seen } = depth_first([0, 0], [2, 5],
+//     [
+//         [0, 1, 5],
+//         [5, 5, 0],
+//         [0, 0, 0],
+//         [0, 0, 0],
+//         [0, 0, 0],
+//         [0, 0, 0]
+//     ]);
+// console.log(visited);

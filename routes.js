@@ -23,6 +23,14 @@ router.post('/getPath', ctx => {
         return;
     }
     let { start, end, alg, grid } = value;
-    ctx.body = { start, end, alg, grid };
+
+    if (alg.toLowerCase() == 'depth-first') {
+        const depthFirst = require('./depth_first');
+        console.log(start, end, alg);
+        ctx.body = depthFirst(start, end, grid);
+    }
+    else {
+        ctx.body = { start, end, alg, grid };
+    }
 });
 module.exports = router;
