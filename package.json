@@ -1,0 +1,11 @@
+{
+  "name": "web_lab",
+  "version": "1.0.0",
+  "description": "It's a lab on the web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dane Horn",
+  "license": "MIT"
+}
