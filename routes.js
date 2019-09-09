@@ -25,7 +25,7 @@ router.post('/getPath', ctx => {
     let { start, end, alg, grid } = value;
 
     if (alg.toLowerCase() == 'depth-first') {
-        const depthFirst = require('./depth_first');
+        const { depthFirst } = require('./depth_first');
         ctx.body = depthFirst(start, end, grid);
     }
     else {
