@@ -38,7 +38,7 @@ function depth_first(src, dst, grid) { // returns {visited, seen}
         });
     }
 }
-module.exports = { depthFirst: depth_first };
+export { depth_first };
 // let { visited, seen } = depth_first([0, 0], [2, 5],
 //     [
 //         [0, 1, 5],

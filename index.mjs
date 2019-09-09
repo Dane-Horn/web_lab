@@ -1,6 +1,6 @@
-const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const router = require('./routes');
+import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
+import { router } from './routes.mjs';
 
 const app = new Koa();
 
