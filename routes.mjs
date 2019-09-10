@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import Router from 'koa-router';
-import { depth_first } from './depth_first.mjs';
+import { depthFirst } from './depth_first.mjs';
 const router = new Router();
 
 router.get('/', ctx => {
@@ -26,7 +26,7 @@ router.post('/getPath', ctx => {
     let { start, end, alg, grid } = value;
 
     if (alg.toLowerCase() == 'depth-first') {
-        ctx.body = depth_first(start, end, grid);
+        ctx.body = depthFirst(start, end, grid);
     }
     else {
         ctx.body = { start, end, alg, grid };

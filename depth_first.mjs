@@ -28,24 +28,14 @@ function depth_first(src, dst, grid) { // returns {visited, seen}
         let down = { newpos: [x, y + 1], cost: getCost([x, y + 1]) };
         let up = { newpos: [x, y - 1], cost: getCost([x, y - 1]) };
 
-        let moves = [right, left, down, up] //reverse bias - up > down > left > right
+        [right, left, down, up] //reverse bias - up > down > left > right
             .filter(({ cost }) => cost != Infinity)
             .filter(({ newpos }) => !isSeen(newpos))
-            .sort(({ cost: costA }, { cost: costB }) => costB - costA);
-        moves.forEach(({ newpos, cost }) => {
-            seen.push(newpos);
-            move(newpos, stack, travelled + cost);
-        });
+            .sort(({ cost: costA }, { cost: costB }) => costB - costA)
+            .forEach(({ newpos, cost }) => {
+                seen.push(newpos);
+                move(newpos, stack, travelled + cost);
+            });
     }
 }
-export { depth_first };
-// let { visited, seen } = depth_first([0, 0], [2, 5],
-//     [
-//         [0, 1, 5],
-//         [5, 5, 0],
-//         [0, 0, 0],
-//         [0, 0, 0],
-//         [0, 0, 0],
-//         [0, 0, 0]
-//     ]);
-// console.log(visited);
+export { depth_first as depthFirst };
