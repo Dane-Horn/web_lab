@@ -12,9 +12,9 @@ router.get('/hello', ctx => {
 });
 
 const schema = Joi.object({
-    start: Joi.array().items(Joi.number().integer().label('start element')).length(2).required(),
-    end: Joi.array().items(Joi.number().integer()).length(2).required(),
-    grid: Joi.array().items(Joi.array().items(Joi.number().integer().valid(0, 1, 2))).required(),
+    // start: Joi.array().items(Joi.number().integer().label('start element')).length(2).required(),
+    // end: Joi.array().items(Joi.number().integer()).length(2).required(),
+    grid: Joi.array().items(Joi.array().items(Joi.number().integer().valid(0, 1, 2, 3, 4, 5, 6, 7))).required(),
     alg: Joi.string().required()
 });
 router.post('/getPath', ctx => {
@@ -23,10 +23,10 @@ router.post('/getPath', ctx => {
         ctx.body = error.details.map(({ message }) => message);
         return;
     }
-    let { start, end, alg, grid } = value;
+    let { alg, grid } = value;
 
     if (alg.toLowerCase() == 'depth-first') {
-        ctx.body = depthFirst(start, end, grid);
+        ctx.body = depthFirst(grid);
     }
     else {
         ctx.body = { start, end, alg, grid };
