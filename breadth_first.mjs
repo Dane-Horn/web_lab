@@ -1,9 +1,11 @@
 function isVisited(visited, v) {
 	return visited.find(([ x, y ]) => x == v[0] && y == v[1]);
 }
-function onStack(stack, [ nx, ny ]) {
-	return stack.find(([ x, y ]) => nx == x && ny == y);
+
+function inQueue(queue, [ nx, ny ]) {
+	return queue.find(([ x, y ]) => nx == x && ny == y);
 }
+
 function move([ x, y ], store) {
 	store.push([ x, y ]);
 }
@@ -14,7 +16,7 @@ function access(grid) {
 	};
 }
 
-function depth_first(grid) {
+function breadth_first(grid) {
 	let src = [];
 	let dst = [];
 	outer: for (let y = 0; y < grid.length; y++) {
@@ -26,10 +28,10 @@ function depth_first(grid) {
 	}
 	let visited = [];
 	let [ dx, dy ] = dst;
-	let stack = [ src ];
+	let queue = [ src ];
 	while (true) {
-		if (stack.length == 0) return { visited, error: true };
-		let [ x, y ] = stack.pop();
+		if (queue.length == 0) return { visited, error: true };
+		let [ x, y ] = queue.shift();
 		visited.push([ x, y ]);
 		if (x == dx && y == dy) return { visited };
 		let getCost = access(grid);
@@ -39,11 +41,11 @@ function depth_first(grid) {
 		let up = { newpos: [ x, y - 1 ], cost: getCost([ x, y - 1 ]) };
 		let validNeighbours = [ right, left, down, up ] //reverse bias - up > down > left > right
 			.filter(({ cost, newpos }) => cost < 5 && !isVisited(visited, newpos))
-			.filter(({ newpos }) => !onStack(stack, newpos))
+			.filter(({ newpos }) => !inQueue(queue, newpos))
 			.sort(({ cost: costA }, { cost: costB }) => costB - costA)
 			.forEach(({ newpos }) => {
-				move(newpos, stack);
+				move(newpos, queue);
 			});
 	}
 }
-export { depth_first as depthFirst };
+export { breadth_first as breadthFirst };
